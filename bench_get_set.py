@@ -1,19 +1,19 @@
-import sys, os, subprocess, signal ,shutil
+import sys, os, subprocess, signal
 
 programs = [
-            #'glib_hash_table',
-            #'stl_unordered_map',
-            #'google_sparse_hash_map',
-            #'google_dense_hash_map',
-            #'kyotocabinet_stash',
-            'rockc',
-            #'leveldb',
-            #'postgresql',
-]
+            #'glib_hash_table_access',
+            #'stl_unordered_map_access',
+            #'google_sparse_hash_map_access',
+            #'google_dense_hash_map_access',
+            #'kyotocabinet_stash_access',
+            #'rockc_access',
+            #'leveldb_access',
+            #'postgresql_access',
+            ]
 
-minkeys  = 20*1000*1000
-maxkeys  = 40*1000*1000
-interval =  5*1000*1000
+minkeys  = 20*100
+maxkeys  = 40*100
+interval =  5*100
 best_out_of = 1
 
 # for the final run, use this:
@@ -30,7 +30,7 @@ outfile = open('output', 'w')
 if len(sys.argv) > 1:
     benchtypes = sys.argv[1:]
 else:
-    benchtypes = ('sequential', 'random', 'delete', 'sequentialstring', 'randomstring', 'deletestring')
+    benchtypes = ('randomgetgood','randomgetbad','randomstringgetgood','randomstringgetbad','randomset','randomstringsetbest')
 
 for benchtype in benchtypes:
     nkeys = minkeys
@@ -38,12 +38,11 @@ for benchtype in benchtypes:
         for program in programs:
             fastest_attempt = 1000000
             fastest_attempt_data = ''
-
+            
             for attempt in range(best_out_of):
-                
-                #os.remove()
+                print 'Start a Process'
                 proc = subprocess.Popen(['./build/'+program, str(nkeys), benchtype], stdout=subprocess.PIPE)
-
+                
                 # wait for the program to fill up memory and spit out its "ready" message
                 try:
                     runtime = float(proc.stdout.readline().strip())
@@ -52,20 +51,22 @@ for benchtype in benchtypes:
                 
                 ps_proc = subprocess.Popen(['ps up %d | tail -n1' % proc.pid], shell=True, stdout=subprocess.PIPE)
                 nbytes = int(ps_proc.stdout.read().split()[4]) * 1024
+                print 'Wait for process Finish'
                 ps_proc.wait()
-
+                
                 os.kill(proc.pid, signal.SIGKILL)
+                print 'Wait for process Kill'
                 proc.wait()
-
+                
                 if nbytes and runtime: # otherwise it crashed
                     line = ','.join(map(str, [benchtype, nkeys, program, nbytes, "%0.6f" % runtime]))
-
+                    
                     if runtime < fastest_attempt:
                         fastest_attempt = runtime
                         fastest_attempt_data = line
-
+    
             if fastest_attempt != 1000000:
                 print >> outfile, fastest_attempt_data
                 print fastest_attempt_data
-
+                    
         nkeys += interval
