@@ -15,28 +15,37 @@ for line in lines:
         by_benchtype.setdefault("%s-memory"  % benchtype, {}).setdefault(program, []).append([nkeys, nbytes])
 
 proper_names = {
-
-#'stl_unordered_map_bulk': 'GCC std::unordered_map',
-#'google_sparse_hash_map_bulk': 'Google sparsehash sparse_hash_map',
-#'google_dense_hash_map_bulk': 'Google sparsehash dense_hash_map',
-#'kyotocabinet_stash': 'Kyotocabinet StashDB',
-'rocksdb' : 'rocksdb',
-'postgresql' : 'postgresql',
-
+	'glib_hash_table': 'GLib Hash Table',
+	'google_dense_hash_map': 'Google Dense Hash Map',
+	'google_sparse_hash_map': 'Google Sparse Hash Map',
+	'stl_unordered_map': 'Std::unordered_map',
+	'kyotocabinet_stash': 'Kyotocabinet StashDB',
+	'kyotocabinet_hash': 'Kyotocabinet HashDB',
+	'boost_unordered_map': 'Boost:unordered_map',
+	'qt_qhash': 'Qt Hash',
+	'python_dict': 'Python Dictionary',
+	'ruby_hash': 'Ruby Hash',
+	'rocksdb' : 'Rocksdb',
+	'leveldb' : 'Leveldb',
+	'postgresql' : 'Postgresql'
 }
 
 # do them in the desired order to make the legend not overlap the chart data
 # too much
 program_slugs = [
-
-                 #'glib_hash_table',
-                 #'stl_unordered_map',
-                 #'google_sparse_hash_map',
-                 #'google_dense_hash_map',
-                 #'kyotocabinet_stash',
-                 #'rockc',
-                 #'leveldb',
-                 #'postgresql',
+	 'glib_hash_table',
+	 'google_dense_hash_map',
+	 'google_sparse_hash_map',
+	 'stl_unordered_map',
+	 'kyotocabinet_stash',
+	 'kyotocabinet_hash',
+	 'boost_unordered_map',
+	 'qt_qhash',
+	 'python_dict',
+	 'ruby_hash',
+	 'rocksdb',
+	 'leveldb',
+	 'postgresql'
 ]
 
 chart_data = {}

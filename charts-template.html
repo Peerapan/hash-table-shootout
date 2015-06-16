@@ -53,14 +53,26 @@
     __CHART_DATA_GOES_HERE__
 
     $(function () {
-        $.plot($("#sequential-runtime"), chart_data['sequential-runtime'], runtime_settings);
-        $.plot($("#random-runtime"),     chart_data['random-runtime'],     runtime_settings);
-        $.plot($("#delete-runtime"),     chart_data['delete-runtime'],     runtime_settings);
-        $.plot($("#sequential-memory"),  chart_data['sequential-memory'],  memory_settings);
-        $.plot($("#sequentialstring-runtime"), chart_data['sequentialstring-runtime'], runtime_settings);
-        $.plot($("#randomstring-runtime"),     chart_data['randomstring-runtime'],     runtime_settings);
-        $.plot($("#deletestring-runtime"),     chart_data['deletestring-runtime'],     runtime_settings);
-        $.plot($("#sequentialstring-memory"),  chart_data['sequentialstring-memory'],  memory_settings);
+		$.plot($("#sequential-runtime"), chart_data['sequential-runtime'], runtime_settings);
+		$.plot($("#random-runtime"),     chart_data['random-runtime'],     runtime_settings);
+		$.plot($("#delete-runtime"),     chart_data['delete-runtime'],     runtime_settings);
+		$.plot($("#sequential-memory"),  chart_data['sequential-memory'],  memory_settings);
+		$.plot($("#sequentialstring-runtime"), chart_data['sequentialstring-runtime'], runtime_settings);
+		$.plot($("#randomstring-runtime"),     chart_data['randomstring-runtime'],     runtime_settings);
+		$.plot($("#deletestring-runtime"),     chart_data['deletestring-runtime'],     runtime_settings);
+		$.plot($("#sequentialstring-memory"),  chart_data['sequentialstring-memory'],  memory_settings);
+		$.plot($("#randomgetgood-runtime"), chart_data['randomgetgood-runtime'], runtime_settings);
+		$.plot($("#randomgetbad-runtime"), chart_data['randomgetbad-runtime'], runtime_settings);
+		$.plot($("#randomgetgood-memory"), chart_data['randomgetgood-memory'], memory_settings);
+		$.plot($("#randomgetbad-memory"), chart_data['randomgetbad-memory'], memory_settings);
+		$.plot($("#randomstringgetgood-runtime"), chart_data['randomstringgetgood-runtime'], runtime_settings);
+		$.plot($("#randomstringgetbad-runtime"), chart_data['randomstringgetbad-runtime'], runtime_settings);
+		$.plot($("#randomstringgetgood-memory"), chart_data['randomstringgetgood-memory'], memory_settings);
+		$.plot($("#randomstringgetbad-memory"), chart_data['randomstringgetbad-memory'], memory_settings);
+		$.plot($("#randomset-runtime"), chart_data['randomset-runtime'], runtime_settings);
+		$.plot($("#randomset-memory"), chart_data['randomset-memory'], memory_settings);
+		$.plot($("#randomstringsetbest-runtime"), chart_data['randomstringsetbest-runtime'], runtime_settings);
+		$.plot($("#randomstringsetbest-memory"), chart_data['randomstringsetbest-memory'], memory_settings);
     });
 </script>
 

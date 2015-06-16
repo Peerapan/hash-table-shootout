@@ -1,20 +1,25 @@
 import sys, os, subprocess, signal ,shutil
 
 programs = [
-            #'glib_hash_table',
-            #'stl_unordered_map',
-            #'google_sparse_hash_map',
-            #'google_dense_hash_map',
-            #'kyotocabinet_stash',
-            'rockc',
-            #'leveldb',
-            #'postgresql',
+	'glib_hash_table',
+	'google_dense_hash_map',
+	'google_sparse_hash_map',
+	'stl_unordered_map',
+	'kyotocabinet_stash',
+	'kyotocabinet_hash',
+	'boost_unordered_map',
+	'qt_qhash',
+	'python_dict',
+	'ruby_hash',
+	'rocksdb',
+	'leveldb',
+	'postgresql'
 ]
 
-minkeys  = 20*1000*1000
+minkeys  = 2*1000*1000
 maxkeys  = 40*1000*1000
-interval =  5*1000*1000
-best_out_of = 1
+interval =  2*1000*1000
+best_out_of = 3
 
 # for the final run, use this:
 #minkeys  =  2*1000*1000
@@ -30,7 +35,7 @@ outfile = open('output', 'w')
 if len(sys.argv) > 1:
     benchtypes = sys.argv[1:]
 else:
-    benchtypes = ('sequential', 'random', 'delete', 'sequentialstring', 'randomstring', 'deletestring')
+    benchtypes = ('sequential', 'random', 'delete', 'sequentialstring', 'randomstring', 'deletestring', 'randomgetgood','randomgetbad','randomstringgetgood','randomstringgetbad','randomset','randomstringsetbest')
 
 for benchtype in benchtypes:
     nkeys = minkeys
